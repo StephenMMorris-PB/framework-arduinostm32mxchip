@@ -72,7 +72,11 @@ class TwoWire
     unsigned char endTransmission(unsigned char);
     unsigned char requestFrom(unsigned char, unsigned char);
     unsigned char requestFrom(unsigned char, unsigned char, unsigned char);
-	  unsigned char requestFrom(unsigned char, unsigned char, unsigned int, unsigned char, unsigned char);
+  
+	//unsigned char requestFrom(unsigned char, unsigned char, unsigned int, unsigned char, unsigned char);
+  //smm <GPS01> Updating 5-argument prototype with sames as .h file: using uint32_t/uint8_t
+    uint8_t requestFrom(uint8_t, uint8_t, uint32_t, uint8_t, uint8_t);
+
     unsigned char requestFrom(int, int);
     unsigned char requestFrom(int, int, int);
     virtual size_t write(unsigned char);
