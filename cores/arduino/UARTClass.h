@@ -43,6 +43,17 @@
 
 #define UART_RCV_SIZE 256
 
+//smm <GP04> error: STDIO_UART1_TX, STDIO_UART1_RX undefined
+//smm <GP04> solution: define TX & RX, per 2 documents:
+//smm - (1) PinNames.h and (2) MXChip datasheet
+//smm - https://en.mxchip.com/filedownload/22506
+
+#define STDIO_UART1_TX USBTX // = SERIAL_TX = MBED_GPIO_30 = PB_6 = 0x16
+#define STDIO_UART1_RX USBRX // = SERIAL_RX = MBED_GPIO_29 = PB_7 = 0x17
+
+//smm-03/11/2020: accidentally made changes to this file, intending to change PlatformIO file.  Removed changes here.
+
+
 class UARTClass : public HardwareSerial
 {
   public:
