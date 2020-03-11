@@ -43,8 +43,8 @@
 
 #define UART_RCV_SIZE 256
 
-//smm <GP04> error: STDIO_UART1_TX, STDIO_UART1_RX undefined
-//smm <GP04> solution: define TX & RX, per 2 documents:
+//smm <GPS04> error: STDIO_UART1_TX, STDIO_UART1_RX undefined
+//smm <GPS04> solution: define TX & RX, per 2 documents:
 //smm - (1) PinNames.h and (2) MXChip datasheet
 //smm - https://en.mxchip.com/filedownload/22506
 
