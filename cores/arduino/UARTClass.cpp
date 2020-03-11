@@ -16,6 +16,25 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+//smm <GPS03> START: UARTClass constructor - no portname input parameter
+//smm <GPS03> Copy/paste all code from Arduino-IDE UARTClass.h & UARTClass.cpp files over code in respective PlatformIO-IDE files
+
+//smm: Copying all code from Arduino-IDE/MXChip to PlatformIO/MXChip - UARTClass.h, UARTClass.cpp files.
+
+//smm: Differences between PlatformIO vs. Arduino:
+
+//smm: .h file:      ........... Platformio-IDE          ........... Arduino-IDE
+//smm: (1)           #define UART_RCV_SIZE 128           #define UART_RCV_SIZE 256
+//smm: (2)           UARTClass();                        UARTClass(UARTName p);  
+//smm: (3)           ---                                 protected type,'UARTName port' declared in UARTClass
+
+//smm: .cpp file:   .... Additions shown in Arduino-IDE code to implement UARTClass class with a port name input argument
+//smm: (1) Arduino-IDE:  UARTClass class - port name input-parameter '(UARTName p)' added in implementation of UARTClass  
+//smm: (2) Arduino-IDE:  UARTClass class - UARTClass::init member function implementation, added conditional code: 'if(port == UART_1)'
+
+//smm <GPS03> END: UARTClass constructor - no portname input parameter
+
+
 #include "mbed.h"
 #include "UARTClass.h"
 #include "BufferedSerial.h"
@@ -23,6 +42,12 @@
 UARTClass::UARTClass()
 {
   serial = NULL;
+}
+
+UARTClass::UARTClass(UARTName p)
+{
+  serial = NULL;
+  port = p;
 }
 
 UARTClass::~UARTClass()
@@ -89,6 +114,13 @@ void UARTClass::init(void)
 {
   if(serial == NULL)
   {
-    serial = new BufferedSerial(STDIO_UART_TX, STDIO_UART_RX, UART_RCV_SIZE);
+    if(port == UART_1) 
+    {
+      serial = new BufferedSerial(STDIO_UART1_TX, STDIO_UART1_RX, UART_RCV_SIZE);
+    }
+    else
+    {
+      serial = new BufferedSerial(STDIO_UART_TX, STDIO_UART_RX, UART_RCV_SIZE);
+    }
   }
 }
